@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import {Button, Col, Container, Form, Row} from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../../App';
+import parse from 'html-react-parser';
 
 interface ITableRow {
     id: string;
@@ -125,7 +126,7 @@ function CourseDetailsPage() {
                             })}
                         </ul>
                         <p className="pt-3" style={{fontSize: "25px"}}>
-                            {data?.description}
+                            {data && parse(data.description)}
                         </p>
                         {data?.sections.sort((a, b) => a.sequence - b.sequence)
                             .map((section, index) => {
